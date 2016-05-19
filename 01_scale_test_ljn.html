@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="d3/d3.js"></script>
+	<title>D3: Scaling</title>
+</head>
+<style type="text/css">
+
+</style>
+
+<body>
+	<script type="text/javascript">
+
+		var dataArray = [20, 40, 50, 50] ;
+
+		var width = 500;
+		var height = 500;
+
+		var widthScale = d3.scale.linear() /* most common = linear, can select ordinal, logarithmic, square root etc. */
+			.domain ([0,60])  /* defines the original range */
+			.range ([0, width]); /* defines the resulting range where the maximum value should not < var width */
+
+		var output = d3.select(“body”)
+					.append(“svg”)
+					.attr(“width”, width)
+					.attr(“height”, height) ;
+
+		var bars = output.selectAll(“rect”)
+					.data(dataArray) /* each data point will run through the scale & the scale will produce a new range */
+					.enter()
+					.append(“rect”)
+					.attr(“width”, function(d) { return widthsScale (d) ; }) /*returns new value within container*/
+					.attr(“height”, 50)
+					.attr(“y”, function(d,i) { return 1 * 100 }) ; 
+
+	</script>
+</body>
+</html>
